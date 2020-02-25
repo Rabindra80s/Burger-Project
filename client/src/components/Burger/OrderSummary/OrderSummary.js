@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import Button from "../../UI/Button/Button";
+
 
 class OrderSummary extends Component {
   //This could be a functional component and need not be a class component.
@@ -31,7 +31,7 @@ class OrderSummary extends Component {
         <Button btnType="Danger" clicked={this.props.purchaseCanceled}>
           CANCEL
       </Button>
-        <Button btnType="Success" clicked={this.props.purchasedContinued}>
+        <Button btnType="Success" clicked={this.props.purchaseContinued}>
           CONTINUE
       </Button>
       </>
