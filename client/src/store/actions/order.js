@@ -42,31 +42,31 @@ export const purchaseInit = () => {
     };
 };
 
-export const fetchedOrdersSuccess = (orders) => {
+export const fetchOrdersSuccess = (orders) => {
     return {
         type: actionTypes.FETCH_ORDERS_SUCCESS,
         orders: orders
     };
 };
 
-export const fetchedOrdersFail = (error) => {
+export const fetchOrdersFail = (error) => {
     return {
         type: actionTypes.FETCH_ORDERS_FAIL,
         error: error
     };
 };
 
-export const fetchedOrdersStart = () => {
+export const fetchOrdersStart = () => {
     return {
         type: actionTypes.FETCH_ORDERS_START
     };
 };
 
-export const fetchedOrders = (token, userId) => {
+export const fetchOrders = (token, userId) => {
     return dispatch => {
-        dispatch(fetchedOrdersStart());
+        dispatch(fetchOrdersStart());
         const queryParams = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
-        axios.get('/orders.json?' + queryParams)
+        axios.get('/orders.json' + queryParams)
             .then(res => {
                 const fetchedOrders = [];
                 for (let key in res.data) {
@@ -75,10 +75,10 @@ export const fetchedOrders = (token, userId) => {
                         id: key
                     });
                 }
-                dispatch(fetchedOrdersSuccess(fetchedOrders));
+                dispatch(fetchOrdersSuccess(fetchedOrders));
             })
             .catch(err => {
-                dispatch(fetchedOrdersFail(err));
+                dispatch(fetchOrdersFail(err));
             });
     };
 };
